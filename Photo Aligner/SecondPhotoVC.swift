@@ -1,5 +1,5 @@
 //
-//  PhotoVC.swift
+//  SecondPhotoVC.swift
 //  Map My Day
 //
 //  Created by Mollie on 3/13/15.
@@ -9,11 +9,11 @@
 import UIKit
 import Photos
 
-class PhotoVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCaptureMetadataOutputObjectsDelegate {
+class SecondPhotoVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCaptureMetadataOutputObjectsDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var firstPhotoButton: UIButton!
-    @IBOutlet weak var secondPhotoButton: UIButton!
+    @IBOutlet weak var secondImageView: UIImageView!
+    @IBOutlet weak var takePhotoButton: UIButton!
     
     let captureSession = AVCaptureSession()
     var previewLayer: AVCaptureVideoPreviewLayer?
@@ -22,6 +22,9 @@ class PhotoVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imageView.image = firstPhoto
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -36,20 +39,22 @@ class PhotoVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
             println("error: \(err?.localizedDescription)")
         }
         
-        addOutputForMetadata()
+//        addOutputForMetadata()
         
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        self.view.layer.addSublayer(previewLayer)
-        previewLayer?.frame = self.view.layer.frame
+        previewLayer?.frame = secondImageView.bounds
+        secondImageView.layer.addSublayer(previewLayer)
+        imageView.alpha = 0.5
+        view.sendSubviewToBack(secondImageView)
         captureSession.startRunning()
     }
     
-    var metadataOutput = AVCaptureMetadataOutput()
-    func addOutputForMetadata() {
-        metadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
-        captureSession.addOutput(metadataOutput)
-        metadataOutput.metadataObjectTypes = metadataOutput.availableMetadataObjectTypes
-    }
+//    var metadataOutput = AVCaptureMetadataOutput()
+//    func addOutputForMetadata() {
+//        metadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+//        captureSession.addOutput(metadataOutput)
+//        metadataOutput.metadataObjectTypes = metadataOutput.availableMetadataObjectTypes
+//    }
     
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
         println(metadataObjects.count)
@@ -63,7 +68,7 @@ class PhotoVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     func configureDevice() {
         if let device = captureDevice {
             device.lockForConfiguration(nil)
-            device.focusMode = .Locked
+            device.focusMode = .Locked // TODO: is this a problem?
             device.unlockForConfiguration()
         }
     }
@@ -75,24 +80,6 @@ class PhotoVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
                     //
                 })
                 device.unlockForConfiguration()
-            }
-        }
-    }
-    
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        let touch = touches.first as! UITouch
-        let screenSize = UIScreen.mainScreen().bounds.size
-        // change view to just imageView
-        var focusPoint = CGPoint(x: touch.locationInView(self.view).y / screenSize.height, y: 1.0 - touch.locationInView(self.view).x / screenSize.width)
-        
-        // just auto-focus instead of tap to focus
-        
-        if let device = captureDevice {
-            if device.lockForConfiguration(nil) {
-                device.focusPointOfInterest = focusPoint
-                device.focusMode = .ContinuousAutoFocus
-                device.exposurePointOfInterest = focusPoint
-                device.exposureMode = .ContinuousAutoExposure
             }
         }
     }
@@ -109,12 +96,13 @@ class PhotoVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        imageView.image = image
+        secondImageView.image = image
+        secondPhoto = image
+        imageView.alpha = 0.5
+        view.sendSubviewToBack(secondImageView)
+        secondPhotoHasBeenChosen()
         
         picker.dismissViewControllerAnimated(true, completion: nil)
-        self.firstPhotoButton.setTitle("Retake First Photo", forState: .Normal)
-        self.firstPhotoButton.setTitle("Retake First Photo", forState: .Highlighted)
-        self.secondPhotoButton.hidden = false
         
         // save image from picker, if it came from the camera
         if (picker.sourceType == UIImagePickerControllerSourceType.Camera) {
@@ -130,21 +118,30 @@ class PhotoVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
                 }
             })
             
+            takePhotoButton.setTitle("Retake First Photo", forState: .Normal)
+            takePhotoButton.setTitle("Retake First Photo", forState: .Highlighted)
+            
         }
         
     }
     
+    var takePhotoButtonClicks = 0
     @IBAction func takePhoto(sender: AnyObject) {
         
-        var imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .Camera
-        
-        presentViewController(imagePicker, animated: true, completion: nil)
+        // the first time the user taps the 2nd photo button, it displays the camera view
+        // the second time they tap it, it saves the image
+        takePhotoButtonClicks += 1
+        if takePhotoButtonClicks == 1 {
+            displaySecondPhotoCamera()
+        } else if takePhotoButtonClicks == 2 {
+            finishSecondPhoto()
+            takePhotoButtonClicks = 0;
+            // reset button title
+        }
         
     }
     
-    @IBAction func takeSecondPhoto(sender: AnyObject) {
+    func displaySecondPhotoCamera() {
         
         // or high
         captureSession.sessionPreset = AVCaptureSessionPresetLow
@@ -162,6 +159,9 @@ class PhotoVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
             }
         }
         
+    }
+    
+    func finishSecondPhoto() {
         var stillImageOutput = AVCaptureStillImageOutput()
         let screenSize = UIScreen.mainScreen().bounds.size
         stillImageOutput.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
@@ -178,32 +178,58 @@ class PhotoVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
                 var cgImageRef = CGImageCreateWithJPEGDataProvider(dataProvider, nil, true, kCGRenderingIntentDefault)
                 var image = UIImage(CGImage: cgImageRef, scale: 1.0, orientation: UIImageOrientation.Right)
                 
-//                var imageView = UIImageView(image: image)
-                self.imageView.image = image
-//                imageView.frame = CGRect(x:0, y:0, width:screenSize.width, height:screenSize.height)
+//                self.secondImageView.image = image
+                secondPhoto = image
+                self.secondPhotoHasBeenChosen()
                 
-                //Show the captured image to
-//                self.view.addSubview(imageView)
-                
-                //Save the captured preview to image
                 UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                
+                self.captureSession.stopRunning()
+                // hide/remove view
                 
             })
         }
-        // remove camera view
-        // save image
-        //        captureSession.stopRunning()
-        //        println(captureSession.outputs.last?.description)
-        //        previewLayer?.frame
+        
         
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func secondPhotoHasBeenChosen() {
         
-        textField.resignFirstResponder()
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: Selector("doneWasPressed"))
+        self.navigationItem.rightBarButtonItem = doneButton
         
-        return true
+//        // save combined photo as combinedPhoto
+//        UIGraphicsBeginImageContextWithOptions(mainView.frame.size, false, 0)
+//        mainView.layer.renderInContext(UIGraphicsGetCurrentContext())
+//        let image = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+//        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
     }
+    
+    func doneWasPressed() {
+        
+        let vc = storyboard?.instantiateViewControllerWithIdentifier("resultsVC") as! ResultsVC
+        navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+//    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+//        let touch = touches.first as! UITouch
+//        let screenSize = UIScreen.mainScreen().bounds.size
+//        // change view to just imageView
+//        var focusPoint = CGPoint(x: touch.locationInView(self.view).y / screenSize.height, y: 1.0 - touch.locationInView(self.view).x / screenSize.width)
+//        
+//        // just auto-focus instead of tap to focus
+//        
+//        if let device = captureDevice {
+//            if device.lockForConfiguration(nil) {
+//                device.focusPointOfInterest = focusPoint
+//                device.focusMode = .ContinuousAutoFocus
+//                device.exposurePointOfInterest = focusPoint
+//                device.exposureMode = .ContinuousAutoExposure
+//            }
+//        }
+//    }
     
     @IBAction func cancelImage(sender: AnyObject) {
         

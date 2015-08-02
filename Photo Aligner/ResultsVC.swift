@@ -10,10 +10,16 @@ import UIKit
 
 class ResultsVC: UIViewController {
 
+    @IBOutlet weak var firstImageView: UIImageView!
+    @IBOutlet weak var secondImageView: UIImageView!
+    @IBOutlet weak var combinedImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        firstImageView.image = firstPhoto
+        secondImageView.image = secondPhoto
+        combinedImageView.image = photosCombined
     }
 
     override func didReceiveMemoryWarning() {

@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC015C221B6EB8BB0069FB16 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC015C211B6EB8BB0069FB16 /* Photos.swift */; };
+		EC015C241B6EBA1A0069FB16 /* FirstPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC015C231B6EBA1A0069FB16 /* FirstPhotoVC.swift */; };
 		ECA866591B6D6BC6007B2AA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA866581B6D6BC6007B2AA3 /* AppDelegate.swift */; };
-		ECA8665B1B6D6BC6007B2AA3 /* PhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8665A1B6D6BC6007B2AA3 /* PhotoVC.swift */; };
+		ECA8665B1B6D6BC6007B2AA3 /* SecondPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8665A1B6D6BC6007B2AA3 /* SecondPhotoVC.swift */; };
 		ECA8665E1B6D6BC6007B2AA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECA8665C1B6D6BC6007B2AA3 /* Main.storyboard */; };
 		ECA866601B6D6BC6007B2AA3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA8665F1B6D6BC6007B2AA3 /* Images.xcassets */; };
 		ECA866631B6D6BC6007B2AA3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECA866611B6D6BC6007B2AA3 /* LaunchScreen.xib */; };
@@ -27,10 +29,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC015C211B6EB8BB0069FB16 /* Photos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
+		EC015C231B6EBA1A0069FB16 /* FirstPhotoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstPhotoVC.swift; sourceTree = "<group>"; };
 		ECA866531B6D6BC6007B2AA3 /* Photo Aligner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Photo Aligner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA866571B6D6BC6007B2AA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA866581B6D6BC6007B2AA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ECA8665A1B6D6BC6007B2AA3 /* PhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVC.swift; sourceTree = "<group>"; };
+		ECA8665A1B6D6BC6007B2AA3 /* SecondPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPhotoVC.swift; sourceTree = "<group>"; };
 		ECA8665D1B6D6BC6007B2AA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ECA8665F1B6D6BC6007B2AA3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		ECA866621B6D6BC6007B2AA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -79,8 +83,10 @@
 		ECA866551B6D6BC6007B2AA3 /* Photo Aligner */ = {
 			isa = PBXGroup;
 			children = (
+				EC015C211B6EB8BB0069FB16 /* Photos.swift */,
 				ECA866581B6D6BC6007B2AA3 /* AppDelegate.swift */,
-				ECA8665A1B6D6BC6007B2AA3 /* PhotoVC.swift */,
+				EC015C231B6EBA1A0069FB16 /* FirstPhotoVC.swift */,
+				ECA8665A1B6D6BC6007B2AA3 /* SecondPhotoVC.swift */,
 				ECD39CD21B6D6FBD00605498 /* ResultsVC.swift */,
 				ECA8665C1B6D6BC6007B2AA3 /* Main.storyboard */,
 				ECA8665F1B6D6BC6007B2AA3 /* Images.xcassets */,
@@ -216,7 +222,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECA8665B1B6D6BC6007B2AA3 /* PhotoVC.swift in Sources */,
+				EC015C221B6EB8BB0069FB16 /* Photos.swift in Sources */,
+				ECA8665B1B6D6BC6007B2AA3 /* SecondPhotoVC.swift in Sources */,
+				EC015C241B6EBA1A0069FB16 /* FirstPhotoVC.swift in Sources */,
 				ECD39CD31B6D6FBD00605498 /* ResultsVC.swift in Sources */,
 				ECA866591B6D6BC6007B2AA3 /* AppDelegate.swift in Sources */,
 			);
