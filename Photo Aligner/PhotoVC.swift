@@ -108,14 +108,29 @@ class PhotoVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         
-        var image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         imageView.image = image
         
         picker.dismissViewControllerAnimated(true, completion: nil)
-        // TODO: only do this if they took a photo
         self.firstPhotoButton.setTitle("Retake First Photo", forState: .Normal)
         self.firstPhotoButton.setTitle("Retake First Photo", forState: .Highlighted)
         self.secondPhotoButton.hidden = false
+        
+        // save image from picker, if it came from the camera
+        if (picker.sourceType == UIImagePickerControllerSourceType.Camera) {
+            
+            PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
+                PHAssetChangeRequest.creationRequestForAssetFromImage(image)
+                
+            }, completionHandler: { (success, error) -> Void in
+                if success {
+                    println("Success")
+                } else {
+                    println(error)
+                }
+            })
+            
+        }
         
     }
     
@@ -163,11 +178,12 @@ class PhotoVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
                 var cgImageRef = CGImageCreateWithJPEGDataProvider(dataProvider, nil, true, kCGRenderingIntentDefault)
                 var image = UIImage(CGImage: cgImageRef, scale: 1.0, orientation: UIImageOrientation.Right)
                 
-                var imageView = UIImageView(image: image)
-                imageView.frame = CGRect(x:0, y:0, width:screenSize.width, height:screenSize.height)
+//                var imageView = UIImageView(image: image)
+                self.imageView.image = image
+//                imageView.frame = CGRect(x:0, y:0, width:screenSize.width, height:screenSize.height)
                 
                 //Show the captured image to
-                self.view.addSubview(imageView)
+//                self.view.addSubview(imageView)
                 
                 //Save the captured preview to image
                 UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
