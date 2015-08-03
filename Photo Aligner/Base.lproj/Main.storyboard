@@ -171,14 +171,22 @@
                                     <constraint firstAttribute="height" constant="151" id="ggA-M8-vt3"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="gLJ-bN-M0g" customClass="BlendImageView" customModule="Photo_Aligner" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="0zV-Dr-rXK" firstAttribute="top" secondItem="TQB-d6-Rs2" secondAttribute="bottom" constant="8" id="5o5-Qk-Kqd"/>
                             <constraint firstAttribute="centerX" secondItem="0zV-Dr-rXK" secondAttribute="centerX" id="90W-1n-y4w"/>
+                            <constraint firstAttribute="trailing" secondItem="gLJ-bN-M0g" secondAttribute="trailing" id="Dcy-Q8-zb7"/>
                             <constraint firstAttribute="centerX" secondItem="jBw-f7-ClW" secondAttribute="centerX" id="IRz-IA-oQ9"/>
+                            <constraint firstItem="b6k-fx-3Hn" firstAttribute="top" secondItem="gLJ-bN-M0g" secondAttribute="bottom" id="OVI-yh-gPx"/>
+                            <constraint firstItem="gLJ-bN-M0g" firstAttribute="leading" secondItem="KMg-Y2-0VF" secondAttribute="leading" id="Rj4-HJ-yHL"/>
                             <constraint firstAttribute="centerX" secondItem="TQB-d6-Rs2" secondAttribute="centerX" id="hWf-mz-7X5"/>
                             <constraint firstItem="TQB-d6-Rs2" firstAttribute="top" secondItem="og0-v9-E91" secondAttribute="bottom" constant="8" id="hoW-Wt-mpQ"/>
+                            <constraint firstItem="gLJ-bN-M0g" firstAttribute="top" secondItem="og0-v9-E91" secondAttribute="bottom" id="oOY-fb-4HK"/>
                             <constraint firstItem="jBw-f7-ClW" firstAttribute="top" secondItem="0zV-Dr-rXK" secondAttribute="bottom" constant="8" id="sfS-e5-PGp"/>
                         </constraints>
                     </view>

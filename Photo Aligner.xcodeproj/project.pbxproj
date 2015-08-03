@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EC015C221B6EB8BB0069FB16 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC015C211B6EB8BB0069FB16 /* Photos.swift */; };
 		EC015C241B6EBA1A0069FB16 /* FirstPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC015C231B6EBA1A0069FB16 /* FirstPhotoVC.swift */; };
+		EC015C261B6EFBC30069FB16 /* BlendImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC015C251B6EFBC30069FB16 /* BlendImageView.swift */; };
 		ECA866591B6D6BC6007B2AA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA866581B6D6BC6007B2AA3 /* AppDelegate.swift */; };
 		ECA8665B1B6D6BC6007B2AA3 /* SecondPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8665A1B6D6BC6007B2AA3 /* SecondPhotoVC.swift */; };
 		ECA8665E1B6D6BC6007B2AA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECA8665C1B6D6BC6007B2AA3 /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		EC015C211B6EB8BB0069FB16 /* Photos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		EC015C231B6EBA1A0069FB16 /* FirstPhotoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstPhotoVC.swift; sourceTree = "<group>"; };
+		EC015C251B6EFBC30069FB16 /* BlendImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlendImageView.swift; sourceTree = "<group>"; };
 		ECA866531B6D6BC6007B2AA3 /* Photo Aligner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Photo Aligner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA866571B6D6BC6007B2AA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA866581B6D6BC6007B2AA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 		ECA866551B6D6BC6007B2AA3 /* Photo Aligner */ = {
 			isa = PBXGroup;
 			children = (
+				EC015C251B6EFBC30069FB16 /* BlendImageView.swift */,
 				EC015C211B6EB8BB0069FB16 /* Photos.swift */,
 				ECA866581B6D6BC6007B2AA3 /* AppDelegate.swift */,
 				EC015C231B6EBA1A0069FB16 /* FirstPhotoVC.swift */,
@@ -222,6 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC015C261B6EFBC30069FB16 /* BlendImageView.swift in Sources */,
 				EC015C221B6EB8BB0069FB16 /* Photos.swift in Sources */,
 				ECA8665B1B6D6BC6007B2AA3 /* SecondPhotoVC.swift in Sources */,
 				EC015C241B6EBA1A0069FB16 /* FirstPhotoVC.swift in Sources */,

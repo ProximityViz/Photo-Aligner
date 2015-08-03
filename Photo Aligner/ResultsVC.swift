@@ -19,7 +19,7 @@ class ResultsVC: UIViewController {
 
         firstImageView.image = firstPhoto
         secondImageView.image = secondPhoto
-        combinedImageView.image = photosCombined
+//        combinedImageView.image = photosCombined
     }
 
     override func didReceiveMemoryWarning() {

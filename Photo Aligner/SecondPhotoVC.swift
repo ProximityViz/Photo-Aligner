@@ -197,16 +197,29 @@ class SecondPhotoVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: Selector("doneWasPressed"))
         self.navigationItem.rightBarButtonItem = doneButton
-        
-//        // save combined photo as combinedPhoto
-//        UIGraphicsBeginImageContextWithOptions(mainView.frame.size, false, 0)
-//        mainView.layer.renderInContext(UIGraphicsGetCurrentContext())
-//        let image = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-//        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
     }
     
     func doneWasPressed() {
+        let layer = UIApplication.sharedApplication().keyWindow!.layer
+        let scale = UIScreen.mainScreen().scale
+        UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, scale);
+        
+        layer.renderInContext(UIGraphicsGetCurrentContext())
+        photosCombined = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+//        // save combined photo as combinedPhoto
+//        UIGraphicsBeginImageContextWithOptions(imageView.frame.size, false, 0)
+//        view.drawViewHierarchyInRect(imageView.frame, afterScreenUpdates: true)
+//        photosCombined = UIGraphicsGetImageFromCurrentImageContext()
+        
+//        UIGraphicsBeginImageContext(view.frame.size)
+//        view.layer.renderInContext(UIGraphicsGetCurrentContext())
+//        photosCombined = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+//        
+        //Save it to the camera roll
+        UIImageWriteToSavedPhotosAlbum(photosCombined, nil, nil, nil)
         
         let vc = storyboard?.instantiateViewControllerWithIdentifier("resultsVC") as! ResultsVC
         navigationController?.pushViewController(vc, animated: true)
