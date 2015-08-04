@@ -10,27 +10,6 @@ import UIKit
 
 class BlendImageView: UIView {
     
-    // maybe these functions need to take in both images and take both sizes into account?
-
-//    func imageScaledtoSize(image: UIImage, size: CGSize) -> UIImage {
-//        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-//        image.drawInRect(CGRectMake(0, 0, size.width, size.height))
-//        let output = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-//        
-//        return output
-//    }
-//    
-//    func imageScaledToFitSize(image: UIImage, size: CGSize) -> UIImage {
-//        let aspect = image.size.width / image.size.height
-//        if size.width / aspect <= size.height {
-//            return imageScaledtoSize(image, size: CGSizeMake(image.size.width, image.size.width / aspect))
-//        } else {
-//            return imageScaledtoSize(image, size: CGSizeMake(image.size.height * aspect, image.size.height))
-//        }
-//        
-//    }
-    
     func getImageRect(imageSize: CGSize, viewSize: CGSize) -> CGRect {
         
         let viewRatio = viewSize.height / viewSize.width
