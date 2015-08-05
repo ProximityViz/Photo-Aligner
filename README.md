@@ -1,7 +1,7 @@
 Uses:
 
 * Stop-motion animation at different locations
-* Video of change over time
+* Animation of change over time
 	* Growth of children
 	* Growth of beard
 	* Locations when traveling

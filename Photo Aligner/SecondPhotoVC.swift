@@ -143,7 +143,6 @@ class SecondPhotoVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     
     func displaySecondPhotoCamera() {
         
-        // or high
         captureSession.sessionPreset = AVCaptureSessionPresetPhoto
         
         let devices = AVCaptureDevice.devices()
