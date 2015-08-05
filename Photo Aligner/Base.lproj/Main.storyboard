@@ -93,10 +93,34 @@
                                 <color key="textColor" red="0.93333333330000001" green="0.87450980389999999" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ot-3b-QfH">
+                                <rect key="frame" x="540" y="28" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="dm9-jQ-VkE"/>
+                                    <constraint firstAttribute="height" constant="44" id="oC2-TV-irb"/>
+                                </constraints>
+                                <state key="normal" title="Switch">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="switchCamera:" destination="Ti1-yD-Gdx" eventType="touchUpInside" id="Ksb-py-NIq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgl-Mv-fmj">
+                                <rect key="frame" x="488" y="28" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="3PV-Cz-YKh"/>
+                                    <constraint firstAttribute="width" constant="44" id="TIV-bZ-xUW"/>
+                                </constraints>
+                                <state key="normal" title="Flash">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.3411764706" green="0.2784313725" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ywa-lD-lnq" firstAttribute="top" secondItem="5wT-Br-hFi" secondAttribute="bottom" constant="20" id="0Lm-js-gDM"/>
+                            <constraint firstItem="4ot-3b-QfH" firstAttribute="top" secondItem="YdL-Ap-qmQ" secondAttribute="bottom" constant="8" id="0Sa-c5-JaM"/>
                             <constraint firstItem="5wT-Br-hFi" firstAttribute="width" secondItem="ydk-UF-jGX" secondAttribute="width" id="1Qy-1j-kWD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5wT-Br-hFi" secondAttribute="trailing" constant="-16" id="3om-66-PuS"/>
                             <constraint firstItem="5wT-Br-hFi" firstAttribute="top" secondItem="YdL-Ap-qmQ" secondAttribute="bottom" id="4R0-uX-gZJ"/>
@@ -116,8 +140,11 @@
                             <constraint firstAttribute="centerY" secondItem="ydk-UF-jGX" secondAttribute="centerY" id="UQn-j2-VWO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ydk-UF-jGX" secondAttribute="trailing" constant="-16" id="VVW-Wf-JX5"/>
                             <constraint firstAttribute="centerX" secondItem="lIO-Jn-B1u" secondAttribute="centerX" id="WlM-4c-GHV"/>
+                            <constraint firstItem="4ot-3b-QfH" firstAttribute="leading" secondItem="wgl-Mv-fmj" secondAttribute="trailing" constant="8" id="Xg2-1q-Pee"/>
+                            <constraint firstItem="wgl-Mv-fmj" firstAttribute="top" secondItem="YdL-Ap-qmQ" secondAttribute="bottom" constant="8" id="Z95-7n-EV9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lIO-Jn-B1u" secondAttribute="trailing" id="a6T-KJ-UFU"/>
                             <constraint firstItem="6te-3b-2GD" firstAttribute="top" secondItem="lIO-Jn-B1u" secondAttribute="bottom" constant="8" id="cTt-XY-MZa"/>
+                            <constraint firstItem="4ot-3b-QfH" firstAttribute="trailing" secondItem="Udl-fP-Bos" secondAttribute="trailingMargin" id="dNr-rq-O8F"/>
                             <constraint firstItem="ydk-UF-jGX" firstAttribute="leading" secondItem="Udl-fP-Bos" secondAttribute="leadingMargin" constant="-16" id="dWt-Ax-yui"/>
                             <constraint firstItem="lIO-Jn-B1u" firstAttribute="leading" secondItem="Udl-fP-Bos" secondAttribute="leadingMargin" id="eem-Wy-bgH"/>
                             <constraint firstItem="6te-3b-2GD" firstAttribute="top" secondItem="5wT-Br-hFi" secondAttribute="bottom" constant="20" id="g2N-75-hQw"/>
@@ -146,10 +173,10 @@
                                 <exclude reference="H2a-FM-eqg"/>
                                 <exclude reference="UQn-j2-VWO"/>
                                 <exclude reference="p09-BD-vVq"/>
+                                <exclude reference="WlM-4c-GHV"/>
                                 <exclude reference="0Lm-js-gDM"/>
                                 <exclude reference="gTM-1D-fpg"/>
                                 <exclude reference="lm7-ML-yVp"/>
-                                <exclude reference="WlM-4c-GHV"/>
                                 <exclude reference="Qef-p1-7mc"/>
                                 <exclude reference="q3v-RS-HXe"/>
                                 <exclude reference="sfD-bl-J0m"/>

@@ -15,10 +15,17 @@ class SecondPhotoVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     @IBOutlet weak var secondImageView: UIImageView!
     @IBOutlet weak var takePhotoButton: UIButton!
     
-    let captureSession = AVCaptureSession()
+    var captureSession = AVCaptureSession()
     var previewLayer: AVCaptureVideoPreviewLayer?
     
     var captureDevice: AVCaptureDevice?
+    
+    enum CameraType {
+        case Front
+        case Back
+    }
+    
+    var camera = CameraType.Back
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,21 +149,52 @@ class SecondPhotoVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     }
     
     func displaySecondPhotoCamera() {
+        // if there was already a session, stop it
+        captureSession.stopRunning()
+        previewLayer?.removeFromSuperlayer()
         
+        captureSession = AVCaptureSession()
         captureSession.sessionPreset = AVCaptureSessionPresetPhoto
         
         let devices = AVCaptureDevice.devices()
         
         for device in devices {
             if device.hasMediaType(AVMediaTypeVideo) {
-                if device.position == .Back {
-                    captureDevice = device as? AVCaptureDevice
-                    if captureDevice != nil {
-                        beginSession()
+                if camera == .Back {
+                    if device.position == .Back {
+                        captureDevice = device as? AVCaptureDevice
+                        if captureDevice != nil {
+                            beginSession()
+                        }
+                    }
+                } else {
+                    if device.position == .Front {
+                        captureDevice = device as? AVCaptureDevice
+                        if captureDevice != nil {
+                            beginSession()
+                        }
                     }
                 }
             }
         }
+        
+    }
+    
+//    func reloadCamera() {
+//        
+//    }
+    
+    @IBAction func switchCamera(sender: AnyObject) {
+        camera = camera == .Back ? .Front : .Back
+//        if camera == .Back {
+//            camera = .Front
+//        } else {
+//            camera = .Back
+//        }
+        
+//        reloadCamera()
+        
+        displaySecondPhotoCamera()
         
     }
     
@@ -225,23 +263,23 @@ class SecondPhotoVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         
     }
     
-//    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-//        let touch = touches.first as! UITouch
-//        let screenSize = UIScreen.mainScreen().bounds.size
-//        // change view to just imageView
-//        var focusPoint = CGPoint(x: touch.locationInView(self.view).y / screenSize.height, y: 1.0 - touch.locationInView(self.view).x / screenSize.width)
-//        
-//        // just auto-focus instead of tap to focus
-//        
-//        if let device = captureDevice {
-//            if device.lockForConfiguration(nil) {
-//                device.focusPointOfInterest = focusPoint
-//                device.focusMode = .ContinuousAutoFocus
-//                device.exposurePointOfInterest = focusPoint
-//                device.exposureMode = .ContinuousAutoExposure
-//            }
-//        }
-//    }
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        let touch = touches.first as! UITouch
+        let screenSize = UIScreen.mainScreen().bounds.size
+        // change view to just imageView
+        var focusPoint = CGPoint(x: touch.locationInView(self.view).y / screenSize.height, y: 1.0 - touch.locationInView(self.view).x / screenSize.width)
+        
+        // just auto-focus instead of tap to focus
+        
+        if let device = captureDevice {
+            if device.lockForConfiguration(nil) {
+                device.focusPointOfInterest = focusPoint
+                device.focusMode = .ContinuousAutoFocus
+                device.exposurePointOfInterest = focusPoint
+                device.exposureMode = .ContinuousAutoExposure
+            }
+        }
+    }
     
     @IBAction func cancelImage(sender: AnyObject) {
         
@@ -263,31 +301,6 @@ class SecondPhotoVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     //    }
     
     @IBAction func saveImage(sender: AnyObject) {
-        
-        //        var newImage = PFObject(className: "Image") // Media or Image
-        //        newImage["user"] = PFUser.currentUser()
-        //
-        //        let location = manager.location
-        //
-        //        newImage["location"] = ["latitude":location.coordinate.latitude,
-        //            "longitude":location.coordinate.longitude,
-        //            "altitude":location.altitude,
-        //            "horizontalAccuracy":location.horizontalAccuracy,
-        //            "verticalAccuracy":location.verticalAccuracy,
-        //            "time":dateformatterTime(location.timestamp)]
-        //        newImage["time"] = NSDate()
-        //
-        //        let width = 540 * imageView.image!.size.width / imageView.image!.size.height
-        //        let image = resizeImage(imageView.image!, withSize: CGSizeMake(width, 540.0))
-        //
-        //        // turn UIImage into PFFile
-        //        let imageFile = PFFile(name: "image.png", data: UIImagePNGRepresentation(image))
-        //        newImage["image"] = imageFile
-        //        
-        //        newImage.saveInBackgroundWithBlock { (success, error) -> Void in
-        //            photos.append(newImage.objectId)
-        //            media.append(["type": "photo", "objectId": newImage.objectId])
-        //        }
         
         dismissViewControllerAnimated(true, completion: nil)
         
