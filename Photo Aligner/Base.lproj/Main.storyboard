@@ -99,7 +99,7 @@
                                     <constraint firstAttribute="width" constant="44" id="dm9-jQ-VkE"/>
                                     <constraint firstAttribute="height" constant="44" id="oC2-TV-irb"/>
                                 </constraints>
-                                <state key="normal" title="Switch">
+                                <state key="normal" backgroundImage="Switch Camera Icon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -112,7 +112,7 @@
                                     <constraint firstAttribute="height" constant="44" id="3PV-Cz-YKh"/>
                                     <constraint firstAttribute="width" constant="44" id="TIV-bZ-xUW"/>
                                 </constraints>
-                                <state key="normal" title="Flash">
+                                <state key="normal" backgroundImage="Flash Icon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -440,5 +440,7 @@
     <resources>
         <image name="Camera" width="136" height="44"/>
         <image name="Camera Roll" width="136" height="44"/>
+        <image name="Flash Icon" width="44" height="44"/>
+        <image name="Switch Camera Icon" width="44" height="44"/>
     </resources>
 </document>
