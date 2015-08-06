@@ -107,7 +107,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgl-Mv-fmj">
-                                <rect key="frame" x="488" y="28" width="44" height="44"/>
+                                <rect key="frame" x="8" y="28" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="3PV-Cz-YKh"/>
                                     <constraint firstAttribute="width" constant="44" id="TIV-bZ-xUW"/>
@@ -115,6 +115,48 @@
                                 <state key="normal" title="Flash">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="flashOptionsPressed:" destination="Ti1-yD-Gdx" eventType="touchUpInside" id="sZu-29-13j"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8r-fq-TPo">
+                                <rect key="frame" x="60" y="28" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="7VT-ie-bcN"/>
+                                    <constraint firstAttribute="height" constant="44" id="gYI-Kf-ohz"/>
+                                </constraints>
+                                <state key="normal" title="Auto">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="flashAutoPressed:" destination="Ti1-yD-Gdx" eventType="touchUpInside" id="Ynd-lz-yaS"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYo-Ej-eJP">
+                                <rect key="frame" x="112" y="28" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="8b7-hW-ZLy"/>
+                                    <constraint firstAttribute="height" constant="44" id="9St-NX-Sbb"/>
+                                </constraints>
+                                <state key="normal" title="On">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="flashOnPressed:" destination="Ti1-yD-Gdx" eventType="touchUpInside" id="o4k-Iw-7ED"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6w-Od-gbj">
+                                <rect key="frame" x="164" y="28" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="ny3-OW-afG"/>
+                                    <constraint firstAttribute="height" constant="44" id="vBL-B5-cpG"/>
+                                </constraints>
+                                <state key="normal" title="Off">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="flashOffPressed:" destination="Ti1-yD-Gdx" eventType="touchUpInside" id="ZGD-Zp-fMg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.3411764706" green="0.2784313725" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -123,8 +165,10 @@
                             <constraint firstItem="4ot-3b-QfH" firstAttribute="top" secondItem="YdL-Ap-qmQ" secondAttribute="bottom" constant="8" id="0Sa-c5-JaM"/>
                             <constraint firstItem="5wT-Br-hFi" firstAttribute="width" secondItem="ydk-UF-jGX" secondAttribute="width" id="1Qy-1j-kWD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5wT-Br-hFi" secondAttribute="trailing" constant="-16" id="3om-66-PuS"/>
+                            <constraint firstItem="wgl-Mv-fmj" firstAttribute="leading" secondItem="Udl-fP-Bos" secondAttribute="leading" constant="8" id="4MA-ih-YpB"/>
                             <constraint firstItem="5wT-Br-hFi" firstAttribute="top" secondItem="YdL-Ap-qmQ" secondAttribute="bottom" id="4R0-uX-gZJ"/>
                             <constraint firstAttribute="centerX" secondItem="6te-3b-2GD" secondAttribute="centerX" id="9SU-xE-EEB"/>
+                            <constraint firstItem="e8r-fq-TPo" firstAttribute="top" secondItem="YdL-Ap-qmQ" secondAttribute="bottom" constant="8" id="A4s-ol-0kF"/>
                             <constraint firstItem="lIO-Jn-B1u" firstAttribute="top" secondItem="5wT-Br-hFi" secondAttribute="bottom" constant="8" id="AIt-zq-wIc"/>
                             <constraint firstItem="6te-3b-2GD" firstAttribute="top" secondItem="ydk-UF-jGX" secondAttribute="bottom" constant="20" id="Bmw-Mq-mGB"/>
                             <constraint firstItem="ydk-UF-jGX" firstAttribute="leading" secondItem="5wT-Br-hFi" secondAttribute="trailing" id="DbT-A0-TIl"/>
@@ -132,8 +176,11 @@
                             <constraint firstItem="6te-3b-2GD" firstAttribute="top" secondItem="ydk-UF-jGX" secondAttribute="bottom" constant="20" id="ETj-CR-sNh"/>
                             <constraint firstItem="ywa-lD-lnq" firstAttribute="top" secondItem="6te-3b-2GD" secondAttribute="top" id="Fni-R2-hON"/>
                             <constraint firstItem="ydk-UF-jGX" firstAttribute="leading" secondItem="Udl-fP-Bos" secondAttribute="leadingMargin" constant="-16" id="H2a-FM-eqg"/>
+                            <constraint firstItem="p6w-Od-gbj" firstAttribute="leading" secondItem="rYo-Ej-eJP" secondAttribute="trailing" constant="8" id="HPK-8c-eub"/>
+                            <constraint firstItem="p6w-Od-gbj" firstAttribute="top" secondItem="YdL-Ap-qmQ" secondAttribute="bottom" constant="8" id="Hkp-81-4Kn"/>
                             <constraint firstItem="6te-3b-2GD" firstAttribute="leading" secondItem="ywa-lD-lnq" secondAttribute="trailing" constant="23" id="Jqt-eD-QDn"/>
                             <constraint firstItem="5wT-Br-hFi" firstAttribute="top" secondItem="YdL-Ap-qmQ" secondAttribute="bottom" id="KxG-7A-Blb"/>
+                            <constraint firstItem="rYo-Ej-eJP" firstAttribute="top" secondItem="YdL-Ap-qmQ" secondAttribute="bottom" constant="8" id="Mbl-cl-J3a"/>
                             <constraint firstItem="lIO-Jn-B1u" firstAttribute="top" secondItem="ydk-UF-jGX" secondAttribute="bottom" constant="8" id="Oko-fP-RE8"/>
                             <constraint firstItem="5wT-Br-hFi" firstAttribute="leading" secondItem="Udl-fP-Bos" secondAttribute="leadingMargin" constant="-16" id="QDP-UP-XHD"/>
                             <constraint firstItem="AnL-JY-YWy" firstAttribute="top" secondItem="ywa-lD-lnq" secondAttribute="bottom" constant="102" id="Qef-p1-7mc"/>
@@ -149,8 +196,10 @@
                             <constraint firstItem="lIO-Jn-B1u" firstAttribute="leading" secondItem="Udl-fP-Bos" secondAttribute="leadingMargin" id="eem-Wy-bgH"/>
                             <constraint firstItem="6te-3b-2GD" firstAttribute="top" secondItem="5wT-Br-hFi" secondAttribute="bottom" constant="20" id="g2N-75-hQw"/>
                             <constraint firstItem="ywa-lD-lnq" firstAttribute="leading" secondItem="Udl-fP-Bos" secondAttribute="leadingMargin" id="gTM-1D-fpg"/>
+                            <constraint firstItem="wgl-Mv-fmj" firstAttribute="leading" secondItem="Udl-fP-Bos" secondAttribute="leadingMargin" id="gdc-uY-2z8"/>
                             <constraint firstItem="AnL-JY-YWy" firstAttribute="top" secondItem="6te-3b-2GD" secondAttribute="bottom" constant="20" id="inb-bB-bbo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6te-3b-2GD" secondAttribute="trailing" id="juq-J0-Ssq"/>
+                            <constraint firstItem="e8r-fq-TPo" firstAttribute="leading" secondItem="wgl-Mv-fmj" secondAttribute="trailing" constant="8" id="kZO-88-qWA"/>
                             <constraint firstItem="ywa-lD-lnq" firstAttribute="top" secondItem="ydk-UF-jGX" secondAttribute="bottom" constant="20" id="lm7-ML-yVp"/>
                             <constraint firstAttribute="centerX" secondItem="ydk-UF-jGX" secondAttribute="centerX" id="p09-BD-vVq"/>
                             <constraint firstItem="5wT-Br-hFi" firstAttribute="top" secondItem="Udl-fP-Bos" secondAttribute="topMargin" id="pBg-CF-ugR"/>
@@ -161,6 +210,7 @@
                             <constraint firstItem="AnL-JY-YWy" firstAttribute="top" secondItem="ywa-lD-lnq" secondAttribute="bottom" constant="20" id="sXR-nD-Baq"/>
                             <constraint firstItem="AnL-JY-YWy" firstAttribute="top" secondItem="ywa-lD-lnq" secondAttribute="bottom" constant="50" id="sfD-bl-J0m"/>
                             <constraint firstItem="ywa-lD-lnq" firstAttribute="leading" secondItem="Udl-fP-Bos" secondAttribute="leadingMargin" id="sqw-tJ-6P1"/>
+                            <constraint firstItem="rYo-Ej-eJP" firstAttribute="leading" secondItem="e8r-fq-TPo" secondAttribute="trailing" constant="8" id="uDd-1d-73P"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5wT-Br-hFi" secondAttribute="trailing" constant="-16" id="xdQ-MV-94a"/>
                         </constraints>
                         <variation key="default">
@@ -173,10 +223,12 @@
                                 <exclude reference="H2a-FM-eqg"/>
                                 <exclude reference="UQn-j2-VWO"/>
                                 <exclude reference="p09-BD-vVq"/>
+                                <exclude reference="gdc-uY-2z8"/>
                                 <exclude reference="WlM-4c-GHV"/>
                                 <exclude reference="0Lm-js-gDM"/>
                                 <exclude reference="gTM-1D-fpg"/>
                                 <exclude reference="lm7-ML-yVp"/>
+                                <exclude reference="Xg2-1q-Pee"/>
                                 <exclude reference="Qef-p1-7mc"/>
                                 <exclude reference="q3v-RS-HXe"/>
                                 <exclude reference="sfD-bl-J0m"/>
@@ -191,6 +243,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="9je-DK-Ebv"/>
                     <connections>
+                        <outlet property="flashAutoButton" destination="e8r-fq-TPo" id="ojG-jd-bt0"/>
+                        <outlet property="flashOffButton" destination="p6w-Od-gbj" id="REl-aa-fT1"/>
+                        <outlet property="flashOnButton" destination="rYo-Ej-eJP" id="Yia-50-2sC"/>
                         <outlet property="imageView" destination="5wT-Br-hFi" id="FP0-um-iXx"/>
                         <outlet property="secondImageView" destination="ydk-UF-jGX" id="CxQ-rD-zWr"/>
                         <outlet property="takePhotoButton" destination="6te-3b-2GD" id="lKd-lh-9dc"/>

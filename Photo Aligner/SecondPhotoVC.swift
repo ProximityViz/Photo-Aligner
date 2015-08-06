@@ -14,11 +14,16 @@ class SecondPhotoVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var secondImageView: UIImageView!
     @IBOutlet weak var takePhotoButton: UIButton!
+    @IBOutlet weak var flashAutoButton: UIButton!
+    @IBOutlet weak var flashOnButton: UIButton!
+    @IBOutlet weak var flashOffButton: UIButton!
     
     var captureSession = AVCaptureSession()
     var previewLayer: AVCaptureVideoPreviewLayer?
     
     var captureDevice: AVCaptureDevice?
+    
+    var flashOptionsVisible = false
     
     enum CameraType {
         case Front
@@ -177,22 +182,10 @@ class SecondPhotoVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
                 }
             }
         }
-        
     }
-    
-//    func reloadCamera() {
-//        
-//    }
     
     @IBAction func switchCamera(sender: AnyObject) {
         camera = camera == .Back ? .Front : .Back
-//        if camera == .Back {
-//            camera = .Front
-//        } else {
-//            camera = .Back
-//        }
-        
-//        reloadCamera()
         
         displaySecondPhotoCamera()
         
@@ -207,7 +200,7 @@ class SecondPhotoVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
             captureSession.addOutput(stillImageOutput)
         }
         
-        if let videoConnection = stillImageOutput.connectionWithMediaType(AVMediaTypeVideo){
+        if let videoConnection = stillImageOutput.connectionWithMediaType(AVMediaTypeVideo) {
             stillImageOutput.captureStillImageAsynchronouslyFromConnection(videoConnection, completionHandler: {
                 (sampleBuffer, error) in
                 var imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
@@ -215,19 +208,14 @@ class SecondPhotoVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
                 var cgImageRef = CGImageCreateWithJPEGDataProvider(dataProvider, nil, true, kCGRenderingIntentDefault)
                 var image = UIImage(CGImage: cgImageRef, scale: 1.0, orientation: UIImageOrientation.Right)
                 
-//                self.secondImageView.image = image
                 secondPhoto = image
                 self.secondPhotoHasBeenChosen()
                 
                 UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
                 
                 self.captureSession.stopRunning()
-                // hide/remove view
-                
             })
         }
-        
-        
     }
     
     func secondPhotoHasBeenChosen() {
@@ -305,5 +293,57 @@ class SecondPhotoVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         dismissViewControllerAnimated(true, completion: nil)
         
     }
+    
+    // flash buttons
+    func toggleFlashButtons() {
+        flashOptionsVisible = flashOptionsVisible == true ? false : true
+        
+        flashAutoButton.hidden = flashOptionsVisible ? false : true
+        flashOnButton.hidden = flashOptionsVisible ? false : true
+        flashOffButton.hidden = flashOptionsVisible ? false : true
+    }
+    
+    @IBAction func flashOptionsPressed(sender: AnyObject) {
+        toggleFlashButtons()
+    }
+    
+    @IBAction func flashAutoPressed(sender: AnyObject) {
+        
+        // reset camera view
+        
+        if let device = captureDevice {
+            device.flashMode = AVCaptureFlashMode.Auto
+            device.torchMode = AVCaptureTorchMode.Auto
+        }
+        
+        toggleFlashButtons()
+    }
+    
+    @IBAction func flashOnPressed(sender: AnyObject) {
+        
+        // reset camera view
+        
+        if let device = captureDevice {
+            device.flashMode = AVCaptureFlashMode.On
+            device.torchMode = AVCaptureTorchMode.On
+        }
+        
+        toggleFlashButtons()
+    }
+    
+    @IBAction func flashOffPressed(sender: AnyObject) {
+        
+        // reset camera view
+        
+        if let device = captureDevice {
+            device.flashMode = AVCaptureFlashMode.Off
+            device.torchMode = AVCaptureTorchMode.Off
+        }
+        
+        toggleFlashButtons()
+    }
+    
+    
+    
     
 }
