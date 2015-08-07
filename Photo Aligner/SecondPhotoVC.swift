@@ -14,9 +14,11 @@ class SecondPhotoVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var secondImageView: UIImageView!
     @IBOutlet weak var takePhotoButton: UIButton!
+    @IBOutlet weak var flashButton: UIButton!
     @IBOutlet weak var flashAutoButton: UIButton!
     @IBOutlet weak var flashOnButton: UIButton!
     @IBOutlet weak var flashOffButton: UIButton!
+    @IBOutlet weak var switchCameraButton: UIButton!
     
     var captureSession = AVCaptureSession()
     var previewLayer: AVCaptureVideoPreviewLayer?
@@ -114,26 +116,32 @@ class SecondPhotoVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         view.sendSubviewToBack(secondImageView)
         secondPhotoHasBeenChosen()
         
-        picker.dismissViewControllerAnimated(true, completion: nil)
-        
-        // save image from picker, if it came from the camera
-        if (picker.sourceType == UIImagePickerControllerSourceType.Camera) {
+        picker.dismissViewControllerAnimated(true, completion: { () -> Void in
             
-            PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
-                PHAssetChangeRequest.creationRequestForAssetFromImage(image)
+            // save image from picker, if it came from the camera
+            if picker.sourceType == UIImagePickerControllerSourceType.Camera {
                 
-            }, completionHandler: { (success, error) -> Void in
-                if success {
-                    println("Success")
-                } else {
-                    println(error)
-                }
-            })
-            
-            takePhotoButton.setTitle("Retake First Photo", forState: .Normal)
-            takePhotoButton.setTitle("Retake First Photo", forState: .Highlighted)
-            
-        }
+                PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
+                    PHAssetChangeRequest.creationRequestForAssetFromImage(image)
+                    
+                    }, completionHandler: { (success, error) -> Void in
+                        if success {
+                            println("Success")
+                        } else {
+                            println(error)
+                        }
+                })
+                
+                // TODO: switch to image
+                self.takePhotoButton.setTitle("Retake First Photo", forState: .Normal)
+                self.takePhotoButton.setTitle("Retake First Photo", forState: .Highlighted)
+                
+            } else if picker.sourceType == UIImagePickerControllerSourceType.PhotoLibrary {
+                
+                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("resultsVC") as! ResultsVC
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        })
         
     }
     
@@ -144,11 +152,20 @@ class SecondPhotoVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         // the second time they tap it, it saves the image
         takePhotoButtonClicks += 1
         if takePhotoButtonClicks == 1 {
+            flashButton.hidden = false
+            switchCameraButton.hidden = false
             displaySecondPhotoCamera()
+            // TODO: change takePhotoButton title/image
         } else if takePhotoButtonClicks == 2 {
+            // TODO: it actually should save the combined photo now
+            // or segue
+            flashButton.hidden = true
+            switchCameraButton.hidden = true
+            takePhotoButtonClicks = 0
             finishSecondPhoto()
-            takePhotoButtonClicks = 0;
+            // TODO: change takePhotoButton title/image
             // reset button title
+            
         }
         
     }
@@ -214,6 +231,9 @@ class SecondPhotoVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
                 UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
                 
                 self.captureSession.stopRunning()
+                
+                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("resultsVC") as! ResultsVC
+                self.navigationController?.pushViewController(vc, animated: true)
             })
         }
     }

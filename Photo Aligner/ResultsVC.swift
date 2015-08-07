@@ -7,19 +7,36 @@
 //
 
 import UIKit
+import Photos
 
 class ResultsVC: UIViewController {
-
-    @IBOutlet weak var firstImageView: UIImageView!
-    @IBOutlet weak var secondImageView: UIImageView!
-    @IBOutlet weak var combinedImageView: UIImageView!
+    
+    @IBOutlet weak var blendImageView: BlendImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        firstImageView.image = firstPhoto
-        secondImageView.image = secondPhoto
-//        combinedImageView.image = photosCombined
+        
+        // save image
+        
+        // TODO: change size to getImageRect once it's based on both images
+        UIGraphicsBeginImageContext(blendImageView.frame.size)
+        let context = UIGraphicsGetCurrentContext()
+        blendImageView.layer.renderInContext(context)
+        let screenShot = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
+            PHAssetChangeRequest.creationRequestForAssetFromImage(screenShot)
+            
+            }, completionHandler: { (success, error) -> Void in
+                if success {
+                    println("Success")
+                } else {
+                    println(error)
+                }
+        })
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
