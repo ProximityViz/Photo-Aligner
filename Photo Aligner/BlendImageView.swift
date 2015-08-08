@@ -12,6 +12,9 @@ class BlendImageView: UIView {
     
     func getImageRect(imageSize: CGSize, viewSize: CGSize) -> CGRect {
         
+        println("rect")
+        println(viewSize)
+        
         let viewRatio = viewSize.height / viewSize.width
         let imageRatio = imageSize.height / imageSize.width
         var imageRect:CGRect!
@@ -27,12 +30,16 @@ class BlendImageView: UIView {
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
-        let ctx = UIGraphicsGetCurrentContext()
+        
         // TODO: secondScale should be different for especially tall images (CGRect's max height should be rect.height)
         let firstImageRect = getImageRect(firstPhoto!.size, viewSize: rect.size)
         let secondImageRect = getImageRect(secondPhoto!.size, viewSize: rect.size)
-        secondPhoto?.drawInRect(secondImageRect, blendMode: kCGBlendModeNormal, alpha: 1)
-        firstPhoto?.drawInRect(firstImageRect, blendMode: kCGBlendModeNormal, alpha: 0.5)
+        if secondPhoto != nil {
+            secondPhoto?.drawInRect(rect, blendMode: kCGBlendModeNormal, alpha: 1)
+        }
+        if firstPhoto != nil {
+            firstPhoto?.drawInRect(rect, blendMode: kCGBlendModeNormal, alpha: 0.5)
+        }
         
         super.drawRect(rect)
     }

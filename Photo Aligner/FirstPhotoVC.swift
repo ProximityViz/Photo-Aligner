@@ -41,6 +41,7 @@ class FirstPhotoVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         
         picker.dismissViewControllerAnimated(true, completion: nil)
         
+        // TODO: should this be inside completion block?
         // save image from picker, if it came from the camera
         if (picker.sourceType == UIImagePickerControllerSourceType.Camera) {
             
@@ -72,6 +73,7 @@ class FirstPhotoVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         
     }
     
+    // TODO: are these used?
     @IBAction func cancelImage(sender: AnyObject) {
         
         dismissViewControllerAnimated(true, completion: nil)
