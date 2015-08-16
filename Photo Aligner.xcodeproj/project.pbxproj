@@ -8,18 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		EC015C221B6EB8BB0069FB16 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC015C211B6EB8BB0069FB16 /* Photos.swift */; };
-		EC015C241B6EBA1A0069FB16 /* FirstPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC015C231B6EBA1A0069FB16 /* FirstPhotoVC.swift */; };
 		EC015C261B6EFBC30069FB16 /* BlendImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC015C251B6EFBC30069FB16 /* BlendImageView.swift */; };
 		EC4334301B7F7EF90032FB33 /* Redesign.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC43342E1B7F7EF80032FB33 /* Redesign.storyboard */; };
 		EC4334321B7F7F540032FB33 /* PickImagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4334311B7F7F540032FB33 /* PickImagesVC.swift */; };
 		EC4334341B7F8BCE0032FB33 /* CombinedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4334331B7F8BCE0032FB33 /* CombinedVC.swift */; };
 		ECA866591B6D6BC6007B2AA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA866581B6D6BC6007B2AA3 /* AppDelegate.swift */; };
-		ECA8665B1B6D6BC6007B2AA3 /* SecondPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8665A1B6D6BC6007B2AA3 /* SecondPhotoVC.swift */; };
-		ECA8665E1B6D6BC6007B2AA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECA8665C1B6D6BC6007B2AA3 /* Main.storyboard */; };
 		ECA866601B6D6BC6007B2AA3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA8665F1B6D6BC6007B2AA3 /* Images.xcassets */; };
 		ECA866631B6D6BC6007B2AA3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECA866611B6D6BC6007B2AA3 /* LaunchScreen.xib */; };
 		ECA8666F1B6D6BC7007B2AA3 /* Photo_AlignerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8666E1B6D6BC7007B2AA3 /* Photo_AlignerTests.swift */; };
-		ECD39CD31B6D6FBD00605498 /* ResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD39CD21B6D6FBD00605498 /* ResultsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +30,6 @@
 
 /* Begin PBXFileReference section */
 		EC015C211B6EB8BB0069FB16 /* Photos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
-		EC015C231B6EBA1A0069FB16 /* FirstPhotoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstPhotoVC.swift; sourceTree = "<group>"; };
 		EC015C251B6EFBC30069FB16 /* BlendImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlendImageView.swift; sourceTree = "<group>"; };
 		EC43342F1B7F7EF90032FB33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Redesign.storyboard; sourceTree = "<group>"; };
 		EC4334311B7F7F540032FB33 /* PickImagesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickImagesVC.swift; sourceTree = "<group>"; };
@@ -42,14 +37,11 @@
 		ECA866531B6D6BC6007B2AA3 /* Photo Aligner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Photo Aligner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA866571B6D6BC6007B2AA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA866581B6D6BC6007B2AA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ECA8665A1B6D6BC6007B2AA3 /* SecondPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPhotoVC.swift; sourceTree = "<group>"; };
-		ECA8665D1B6D6BC6007B2AA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ECA8665F1B6D6BC6007B2AA3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		ECA866621B6D6BC6007B2AA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		ECA866681B6D6BC7007B2AA3 /* Photo AlignerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Photo AlignerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA8666D1B6D6BC7007B2AA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA8666E1B6D6BC7007B2AA3 /* Photo_AlignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo_AlignerTests.swift; sourceTree = "<group>"; };
-		ECD39CD21B6D6FBD00605498 /* ResultsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,10 +86,6 @@
 				EC015C251B6EFBC30069FB16 /* BlendImageView.swift */,
 				EC015C211B6EB8BB0069FB16 /* Photos.swift */,
 				ECA866581B6D6BC6007B2AA3 /* AppDelegate.swift */,
-				EC015C231B6EBA1A0069FB16 /* FirstPhotoVC.swift */,
-				ECA8665A1B6D6BC6007B2AA3 /* SecondPhotoVC.swift */,
-				ECD39CD21B6D6FBD00605498 /* ResultsVC.swift */,
-				ECA8665C1B6D6BC6007B2AA3 /* Main.storyboard */,
 				EC4334311B7F7F540032FB33 /* PickImagesVC.swift */,
 				EC4334331B7F8BCE0032FB33 /* CombinedVC.swift */,
 				EC43342E1B7F7EF80032FB33 /* Redesign.storyboard */,
@@ -214,7 +202,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECA8665E1B6D6BC6007B2AA3 /* Main.storyboard in Resources */,
 				ECA866631B6D6BC6007B2AA3 /* LaunchScreen.xib in Resources */,
 				ECA866601B6D6BC6007B2AA3 /* Images.xcassets in Resources */,
 				EC4334301B7F7EF90032FB33 /* Redesign.storyboard in Resources */,
@@ -237,9 +224,6 @@
 			files = (
 				EC015C261B6EFBC30069FB16 /* BlendImageView.swift in Sources */,
 				EC015C221B6EB8BB0069FB16 /* Photos.swift in Sources */,
-				ECA8665B1B6D6BC6007B2AA3 /* SecondPhotoVC.swift in Sources */,
-				EC015C241B6EBA1A0069FB16 /* FirstPhotoVC.swift in Sources */,
-				ECD39CD31B6D6FBD00605498 /* ResultsVC.swift in Sources */,
 				EC4334341B7F8BCE0032FB33 /* CombinedVC.swift in Sources */,
 				ECA866591B6D6BC6007B2AA3 /* AppDelegate.swift in Sources */,
 				EC4334321B7F7F540032FB33 /* PickImagesVC.swift in Sources */,
@@ -271,14 +255,6 @@
 				EC43342F1B7F7EF90032FB33 /* Base */,
 			);
 			name = Redesign.storyboard;
-			sourceTree = "<group>";
-		};
-		ECA8665C1B6D6BC6007B2AA3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ECA8665D1B6D6BC6007B2AA3 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		ECA866611B6D6BC6007B2AA3 /* LaunchScreen.xib */ = {

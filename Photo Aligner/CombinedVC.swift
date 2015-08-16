@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class CombinedVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -22,23 +23,6 @@ class CombinedVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     var blendMode = kCGBlendModeNormal
     var blendAlpha: Float = 0.5
     
-    func getImageRect(imageSize: CGSize, viewSize: CGSize) -> CGRect {
-        
-        println("rect")
-        println(viewSize)
-        
-        let viewRatio = viewSize.height / viewSize.width
-        let imageRatio = imageSize.height / imageSize.width
-        var imageRect:CGRect!
-        if imageRatio <= viewRatio {
-            // maybe change Y and X so it's in the middle of the screen
-            return CGRectMake(0, 0, viewSize.width, viewSize.width * imageRatio)
-        } else {
-            return CGRectMake(0, 0, viewSize.height / imageRatio, viewSize.height)
-        }
-        
-    }
-    
     func drawImages() {
         
         blendView?.removeFromSuperview()
@@ -48,6 +32,33 @@ class CombinedVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         combinedView.addSubview(blendView!)
         // REFACTOR: Is this needed?
         //        combinedView.setNeedsDisplay()
+        
+    }
+    
+    func saveCombined() {
+        println("save")
+        
+        if blendView != nil {
+            // maybe make a hidden big image, save that one, and then dismiss the hidden image
+        
+            // TODO: change size to getImageRect once it's based on both images
+            UIGraphicsBeginImageContext(blendView!.frame.size)
+            let context = UIGraphicsGetCurrentContext()
+            blendView!.layer.renderInContext(context)
+            let screenShot = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
+                PHAssetChangeRequest.creationRequestForAssetFromImage(screenShot)
+                
+                }, completionHandler: { (success, error) -> Void in
+                    if success {
+                        println("Success")
+                    } else {
+                        println(error)
+                    }
+            })
+        }
         
     }
     
@@ -64,6 +75,9 @@ class CombinedVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
         // redraw image on device rotation
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "drawImages", name: "screenRotated", object: nil)
+        
+        navigationController?.navigationBarHidden = false
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.Done, target: self, action: "saveCombined")
         
     }
     

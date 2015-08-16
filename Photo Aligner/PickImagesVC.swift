@@ -26,6 +26,8 @@ class PickImagesVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBarHidden = true
+        
         PHPhotoLibrary.requestAuthorization(nil)
     }
     

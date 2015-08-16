@@ -34,6 +34,8 @@ class BlendImageView: UIView {
     
     func getImageRect(imageSize: CGSize, viewSize: CGSize) -> CGRect {
         
+        println(imageSize)
+        
         // tests: 
         // (834.0, 1250.0), (320.0, 389.0) -> (190.0, 0.0, 260.0, 389.0)
         // (1500.0, 1001.0), (320.0, 389.0) -> (0.0, 87.5, 320.0, 214.0)
