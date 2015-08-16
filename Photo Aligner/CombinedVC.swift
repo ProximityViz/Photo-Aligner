@@ -38,10 +38,21 @@ class CombinedVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     func saveCombined() {
         println("save")
         
-        if blendView != nil {
-            // maybe make a hidden big image, save that one, and then dismiss the hidden image
+        if blendView != nil && firstPhoto != nil && secondPhoto != nil {
+//            // maybe make a hidden big image, save that one, and then dismiss the hidden image
+//            println(blendView!.frame.size) // pass this to SaveBlendImageView
+//            // calculate size of exported image in here and pass it in instead
+//                // imageView = (320, 325)
+//                // firstImage = (834, 1250)
+//                // secondImage = (1500, 1001)
+//                // saveBlendView should = ()
+//            let imageViewRatio = blendView!.frame.size.height / blendView!.frame.size.width
+//            let firstImageRatio = firstPhoto!.size.height / firstPhoto!.size.width
+//            let secondImageRatio = secondPhoto!.size.height / secondPhoto!.size.width
+//            if
+            
         
-            // TODO: change size to getImageRect once it's based on both images
+            // save image from saveBlendView
             UIGraphicsBeginImageContext(blendView!.frame.size)
             let context = UIGraphicsGetCurrentContext()
             blendView!.layer.renderInContext(context)
@@ -78,6 +89,7 @@ class CombinedVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
         navigationController?.navigationBarHidden = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.Done, target: self, action: "saveCombined")
+        navigationController?.navigationBar.tintColor = UIColor(red:0.65, green:0.88, blue:0.99, alpha:1)
         
     }
     

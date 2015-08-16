@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "rotated", name: UIDeviceOrientationDidChangeNotification, object: nil)
         
+        UIBarButtonItem.appearance().tintColor = UIColor(red:0.65, green:0.88, blue:0.99, alpha:1)
+        
         return true
     }
 

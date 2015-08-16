@@ -26,9 +26,17 @@ class PickImagesVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBarHidden = true
-        
         PHPhotoLibrary.requestAuthorization(nil)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
+        navigationController?.navigationBarHidden = true
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
@@ -63,36 +71,59 @@ class PickImagesVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         
     }
     
+    func rotateOverlay(imageView: UIImageView) -> UIImageView {
+        
+        // what do we want?
+        
+        // a) longest side of image to be on longest side of phone
+        
+        if UIDevice.currentDevice().orientation == UIDeviceOrientation.Portrait {
+            return imageView
+        }
+//        var transform: CGAffineTransform = CGAffineTransformIdentity
+        if UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeLeft {
+            // rotate left
+//            let transform = CGAffineTransformRotate(transform, Float(M_PI_2))
+            imageView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
+        } else if UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeRight {
+            // rotate right
+            //            let transform = CGAffineTransformRotate(transform, Float(-M_PI_2))
+            imageView.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI_2))
+        }
+        
+        //            // b) "bottom" of image to always be on "bottom" of phone (also needs to rotate when you rotate the device)
+        
+        
+        return imageView
+    }
+    
     func createActionSheet() -> UIAlertController {
         
-        let actionSheet = UIAlertController(title: "Title", message: "Choose", preferredStyle: .ActionSheet)
+        let actionSheet = UIAlertController(title: "Choose Source", message: nil, preferredStyle: .ActionSheet)
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
         let cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default) { (alert: UIAlertAction!) -> Void in
             
-            let phoneFrame = self.view.bounds
-            let imageRect = CGRectMake(0, 33, phoneFrame.width, phoneFrame.height - 128)
-            var imageView = UIImageView(frame: imageRect)
+            var imageView = UIImageView()
             imageView.contentMode = UIViewContentMode.ScaleAspectFit
             imageView.alpha = 0.5
             
             if self.photoBeingPicked == 1 && secondPhoto != nil {
                 imageView.image = secondPhoto
-                println("photo 2 overlay; shooting photo 1")
             } else if self.photoBeingPicked == 2 && firstPhoto != nil {
                 imageView.image = firstPhoto
-                println("photo 1 overlay; shooting photo 2")
-            } else if self.photoBeingPicked == 1 && secondPhoto == nil {
-                println("no overlay; shooting photo 1")
-            } else if self.photoBeingPicked == 2 && firstPhoto == nil {
-                println("no overlay; shooting photo 2")
             }
             
             var imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             imagePicker.sourceType = .Camera
-            imagePicker.cameraOverlayView = imageView
             
-            self.presentViewController(imagePicker, animated: true, completion: nil)
+
+            self.presentViewController(imagePicker, animated: true, completion: { () -> Void in
+                
+                imageView.frame = CGRectMake(0, -31, imagePicker.view.frame.width, imagePicker.view.frame.height)
+                imagePicker.cameraOverlayView = imageView
+                
+            })
             
         }
         let libraryAction = UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.Default) { (alert: UIAlertAction!) -> Void in

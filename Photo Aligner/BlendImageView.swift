@@ -32,7 +32,7 @@ class BlendImageView: UIView {
         super.init(coder: aDecoder)
     }
     
-    func getImageRect(imageSize: CGSize, viewSize: CGSize) -> CGRect {
+    func getImageRect(imageSize: CGSize) -> CGRect {
         
         println(imageSize)
         
@@ -64,11 +64,11 @@ class BlendImageView: UIView {
         
         // TODO: secondScale should be different for especially tall images (CGRect's max height should be rect.height)
         if secondPhoto != nil {
-            let secondImageRect = getImageRect(secondPhoto!.size, viewSize: rect.size)
+            let secondImageRect = getImageRect(secondPhoto!.size)
             secondPhoto?.drawInRect(secondImageRect, blendMode: kCGBlendModeNormal, alpha: 1)
         }
         if firstPhoto != nil {
-            let firstImageRect = getImageRect(firstPhoto!.size, viewSize: rect.size)
+            let firstImageRect = getImageRect(firstPhoto!.size)
             firstPhoto?.drawInRect(firstImageRect, blendMode: blendMode, alpha: CGFloat(blendAlpha))
         }
         
