@@ -13,9 +13,17 @@ import Photos
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    func rotated() {
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("screenRotated", object: self)
+        
+    }
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "rotated", name: UIDeviceOrientationDidChangeNotification, object: nil)
         
         return true
     }

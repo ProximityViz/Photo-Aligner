@@ -142,7 +142,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7p9-Nr-OuP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1542" y="716"/>
+            <point key="canvasLocation" x="1531" y="382"/>
+        </scene>
+        <!--Collage-->
+        <scene sceneID="1s9-RD-dz7">
+            <objects>
+                <viewController id="kqq-vv-kG5" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="u1l-Tg-G7W"/>
+                        <viewControllerLayoutGuide type="bottom" id="SLk-33-vmr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="04O-UM-EPi">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Collage" id="VhF-nE-99S"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q4n-SB-evl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1531" y="1131"/>
         </scene>
         <!--Double Exposure-->
         <scene sceneID="NLL-pV-WMQ">
@@ -218,9 +237,9 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XUn-t4-Xi5">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XUn-t4-Xi5">
                                 <rect key="frame" x="0.0" y="64" width="600" height="396"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.47450980390000003" green="0.42745098040000001" blue="0.80784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -232,11 +251,15 @@
                             <constraint firstItem="5qQ-nq-pKp" firstAttribute="trailing" secondItem="rue-xq-0hr" secondAttribute="trailingMargin" id="NTA-9z-fsp"/>
                             <constraint firstItem="Qli-2A-78A" firstAttribute="top" secondItem="5qQ-nq-pKp" secondAttribute="bottom" constant="14" id="XAo-ST-caY"/>
                             <constraint firstItem="5qQ-nq-pKp" firstAttribute="leading" secondItem="4LU-5t-tYt" secondAttribute="trailing" constant="8" id="aBs-It-BZH"/>
+                            <constraint firstItem="XUn-t4-Xi5" firstAttribute="leading" secondItem="rue-xq-0hr" secondAttribute="leading" id="bPy-EO-zWg"/>
                             <constraint firstItem="OaC-ol-z6f" firstAttribute="top" secondItem="Qli-2A-78A" secondAttribute="bottom" constant="8" id="c5j-2y-uyL"/>
+                            <constraint firstItem="XUn-t4-Xi5" firstAttribute="top" secondItem="leR-AU-Wkc" secondAttribute="bottom" id="cKl-D8-62r"/>
+                            <constraint firstAttribute="trailing" secondItem="XUn-t4-Xi5" secondAttribute="trailing" id="dGi-ED-naa"/>
                             <constraint firstItem="5qQ-nq-pKp" firstAttribute="centerY" secondItem="4LU-5t-tYt" secondAttribute="centerY" id="ePw-cf-8cu"/>
                             <constraint firstItem="4LU-5t-tYt" firstAttribute="leading" secondItem="rue-xq-0hr" secondAttribute="leadingMargin" id="kiZ-b1-9o3"/>
                             <constraint firstItem="Qli-2A-78A" firstAttribute="trailing" secondItem="rue-xq-0hr" secondAttribute="trailingMargin" id="o85-a4-5dP"/>
                             <constraint firstItem="5qQ-nq-pKp" firstAttribute="width" secondItem="Qli-2A-78A" secondAttribute="width" id="ok1-OW-uXi"/>
+                            <constraint firstItem="5qQ-nq-pKp" firstAttribute="top" secondItem="XUn-t4-Xi5" secondAttribute="bottom" constant="8" id="t8K-ed-lg7"/>
                             <constraint firstItem="OaC-ol-z6f" firstAttribute="top" secondItem="haT-n7-G04" secondAttribute="bottom" constant="14" id="wWo-pN-2Al"/>
                         </constraints>
                         <variation key="default">
@@ -256,7 +279,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QTb-CV-U1n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1542" y="-2"/>
+            <point key="canvasLocation" x="1531" y="-335"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="f1f-zU-gli">
@@ -271,6 +294,7 @@
                     <connections>
                         <segue destination="UpH-45-CyG" kind="relationship" relationship="viewControllers" id="BNS-vj-lyr"/>
                         <segue destination="Mpp-en-4kr" kind="relationship" relationship="viewControllers" id="8SK-Af-dUH"/>
+                        <segue destination="kqq-vv-kG5" kind="relationship" relationship="viewControllers" id="4fW-KR-WoO"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dxU-HD-QAX" userLabel="First Responder" sceneMemberID="firstResponder"/>

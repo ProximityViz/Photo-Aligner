@@ -14,8 +14,13 @@ class CombinedVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     @IBOutlet weak var alphaSlider: UISlider!
     @IBOutlet weak var combinedView: UIView!
     
+    var blendView: UIView?
+    
     let pickerOptions = ["Normal", "Multiply", "Screen", "Overlay", "Darken", "Lighten", "Color Dodge", "Color Burn", "Soft Light", "Hard Light", "Difference", "Exclusion", "Hue", "Saturation", "Color", "Luminosity"]
-    var alphaValue: Float = 0.5
+    let blendModeOptions = [kCGBlendModeNormal, kCGBlendModeMultiply, kCGBlendModeScreen, kCGBlendModeOverlay, kCGBlendModeDarken, kCGBlendModeLighten, kCGBlendModeColorDodge, kCGBlendModeColorBurn, kCGBlendModeSoftLight, kCGBlendModeHardLight, kCGBlendModeDifference, kCGBlendModeExclusion, kCGBlendModeHue, kCGBlendModeSaturation, kCGBlendModeColor, kCGBlendModeLuminosity]
+    
+    var blendMode = kCGBlendModeNormal
+    var blendAlpha: Float = 0.5
     
     func getImageRect(imageSize: CGSize, viewSize: CGSize) -> CGRect {
         
@@ -34,6 +39,18 @@ class CombinedVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
     }
     
+    func drawImages() {
+        
+        blendView?.removeFromSuperview()
+        blendView = BlendImageView(frame: combinedView.frame)
+        blendView = BlendImageView(frame: combinedView.frame, blendMode: blendMode, alpha: blendAlpha)
+        blendView!.frame = CGRectMake(0, 0, combinedView.frame.width, combinedView.frame.height)
+        combinedView.addSubview(blendView!)
+        // REFACTOR: Is this needed?
+        //        combinedView.setNeedsDisplay()
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,21 +60,22 @@ class CombinedVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         pickerView.delegate = self
         pickerView.dataSource = self
         
-        alphaSlider.value = alphaValue
+        alphaSlider.value = blendAlpha
+        
+        // redraw image on device rotation
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "drawImages", name: "screenRotated", object: nil)
         
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(true)
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
         
-        let blendView = BlendImageView(frame: view.frame)
-        println("viewDidLoad")
-        println(view.frame.size)
-        blendView.frame = CGRectMake(0, 0, combinedView.frame.width, combinedView.frame.height)
-        combinedView.addSubview(blendView)
-        combinedView.setNeedsDisplay()
+        println("viewDidAppear")
+        println(combinedView.frame.size)
         
+        drawImages()
     }
+    
     
     // MARK: Picker
     
@@ -74,8 +92,9 @@ class CombinedVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         blendModeTextField.text = pickerOptions[row]
+        blendMode = blendModeOptions[row]
         
-        // TODO: might need to redraw image
+        drawImages()
         
     }
     
@@ -90,9 +109,9 @@ class CombinedVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     // MARK: Slider
     @IBAction func sliderChanged(sender: UISlider) {
         
-        alphaValue = sender.value
+        blendAlpha = sender.value
         
-        // TODO: might need to redraw image
+        drawImages()
         
     }
     
