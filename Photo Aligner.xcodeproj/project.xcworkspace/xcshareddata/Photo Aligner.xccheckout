@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>C7193654-3C03-491E-ABC0-60257A4A941A</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Photo Aligner</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>DE84ED1C6B46DE9E9C964E15C273379816D47E64</key>
 		<string>https://github.com/mollietaylor/Photo-Aligner.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Photo Aligner.xcodeproj/project.xcworkspace</string>
+	<string>Photo Aligner.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>DE84ED1C6B46DE9E9C964E15C273379816D47E64</key>
