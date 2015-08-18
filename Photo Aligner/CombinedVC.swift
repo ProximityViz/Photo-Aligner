@@ -64,7 +64,15 @@ class CombinedVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
                 
                 }, completionHandler: { (success, error) -> Void in
                     if success {
-                        println("Success")
+                        
+                        let savedAlertController = UIAlertController(title: "Image Saved", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+                        self.presentViewController(savedAlertController, animated: false, completion: nil)
+                        let delay = 0.5 * Double(NSEC_PER_SEC)
+                        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                        dispatch_after(time, dispatch_get_main_queue(), { () -> Void in
+                            savedAlertController.dismissViewControllerAnimated(false, completion: nil)
+                        })
+                        
                     } else {
                         println(error)
                     }
