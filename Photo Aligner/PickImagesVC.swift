@@ -27,6 +27,9 @@ class PickImagesVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         super.viewDidLoad()
         
         PHPhotoLibrary.requestAuthorization(nil)
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back"), style: UIBarButtonItemStyle.Done, target: nil, action: nil)
+        
     }
     
     override func viewWillAppear(animated: Bool) {
