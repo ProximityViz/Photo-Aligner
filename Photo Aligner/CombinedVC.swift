@@ -96,7 +96,6 @@ class CombinedVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "drawImages", name: "screenRotated", object: nil)
         
         navigationController?.navigationBarHidden = false
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.Done, target: self, action: "saveCombined")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Save"), style: UIBarButtonItemStyle.Done, target: self, action: "saveCombined")
         navigationController?.navigationBar.tintColor = UIColor(red:0.65, green:0.88, blue:0.99, alpha:1)
         

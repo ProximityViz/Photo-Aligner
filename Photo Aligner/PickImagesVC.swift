@@ -22,6 +22,13 @@ class PickImagesVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     var captureDevice: AVCaptureDevice?
     
     var photoBeingPicked = 1
+    
+    func clearImages() {
+        firstPhoto = nil
+        secondPhoto = nil
+        firstImageView.image = nil
+        secondImageView.image = nil
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +36,15 @@ class PickImagesVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         PHPhotoLibrary.requestAuthorization(nil)
         
         navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back"), style: UIBarButtonItemStyle.Done, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Clear Photos", style: UIBarButtonItemStyle.Plain, target: self, action: "clearImages")
         
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(true)
-        
-        navigationController?.navigationBarHidden = true
-    }
+//    override func viewWillAppear(animated: Bool) {
+//        super.viewWillAppear(true)
+//        
+//        navigationController?.navigationBarHidden = true
+//    }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
