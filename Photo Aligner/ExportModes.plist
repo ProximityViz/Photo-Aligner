@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>Double Exposure</string>
+		<key>storyboardID</key>
+		<string>combinedVC</string>
+		<key>class</key>
+		<string>CombinedVC</string>
+		<key>imageName</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>3D</string>
+		<key>storyboardID</key>
+		<string>threeDeeVC</string>
+		<key>class</key>
+		<string>ThreeDeeVC</string>
+		<key>imageName</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Texture Overlay</string>
+		<key>storyboardID</key>
+		<string>textureVC</string>
+		<key>class</key>
+		<string>TextureVC</string>
+		<key>imageName</key>
+		<string></string>
+	</dict>
+</array>
+</plist>

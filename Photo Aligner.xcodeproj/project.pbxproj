@@ -14,6 +14,9 @@
 		EC4334341B7F8BCE0032FB33 /* CombinedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4334331B7F8BCE0032FB33 /* CombinedVC.swift */; };
 		EC4334361B8118490032FB33 /* SaveBlendImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4334351B8118490032FB33 /* SaveBlendImageView.swift */; };
 		EC6413B51B81566C0084EDF3 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6413B41B81566C0084EDF3 /* NavigationController.swift */; };
+		EC9954821B85482F00FC326C /* ExportModesCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9954811B85482F00FC326C /* ExportModesCVC.swift */; };
+		EC9954841B85498B00FC326C /* ExportModes.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC9954831B85498B00FC326C /* ExportModes.plist */; };
+		EC9954861B85536A00FC326C /* ExportModeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9954851B85536A00FC326C /* ExportModeCell.swift */; };
 		ECA866591B6D6BC6007B2AA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA866581B6D6BC6007B2AA3 /* AppDelegate.swift */; };
 		ECA866601B6D6BC6007B2AA3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA8665F1B6D6BC6007B2AA3 /* Images.xcassets */; };
 		ECA866631B6D6BC6007B2AA3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECA866611B6D6BC6007B2AA3 /* LaunchScreen.xib */; };
@@ -38,6 +41,9 @@
 		EC4334331B7F8BCE0032FB33 /* CombinedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombinedVC.swift; sourceTree = "<group>"; };
 		EC4334351B8118490032FB33 /* SaveBlendImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveBlendImageView.swift; sourceTree = "<group>"; };
 		EC6413B41B81566C0084EDF3 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		EC9954811B85482F00FC326C /* ExportModesCVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportModesCVC.swift; sourceTree = "<group>"; };
+		EC9954831B85498B00FC326C /* ExportModes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ExportModes.plist; sourceTree = "<group>"; };
+		EC9954851B85536A00FC326C /* ExportModeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportModeCell.swift; sourceTree = "<group>"; };
 		ECA866531B6D6BC6007B2AA3 /* Photo Aligner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Photo Aligner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA866571B6D6BC6007B2AA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA866581B6D6BC6007B2AA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,10 +103,13 @@
 		ECA866551B6D6BC6007B2AA3 /* Photo Aligner */ = {
 			isa = PBXGroup;
 			children = (
+				EC9954831B85498B00FC326C /* ExportModes.plist */,
+				EC9954851B85536A00FC326C /* ExportModeCell.swift */,
 				EC4334371B81187D0032FB33 /* Display & Save Photos */,
 				ECA866581B6D6BC6007B2AA3 /* AppDelegate.swift */,
 				EC6413B41B81566C0084EDF3 /* NavigationController.swift */,
 				EC4334311B7F7F540032FB33 /* PickImagesVC.swift */,
+				EC9954811B85482F00FC326C /* ExportModesCVC.swift */,
 				EC4334331B7F8BCE0032FB33 /* CombinedVC.swift */,
 				EC43342E1B7F7EF80032FB33 /* Redesign.storyboard */,
 				ECA8665F1B6D6BC6007B2AA3 /* Images.xcassets */,
@@ -217,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECA866631B6D6BC6007B2AA3 /* LaunchScreen.xib in Resources */,
+				EC9954841B85498B00FC326C /* ExportModes.plist in Resources */,
 				ECA866601B6D6BC6007B2AA3 /* Images.xcassets in Resources */,
 				EC4334301B7F7EF90032FB33 /* Redesign.storyboard in Resources */,
 			);
@@ -240,7 +250,9 @@
 				EC015C221B6EB8BB0069FB16 /* Photos.swift in Sources */,
 				EC4334341B7F8BCE0032FB33 /* CombinedVC.swift in Sources */,
 				ECA866591B6D6BC6007B2AA3 /* AppDelegate.swift in Sources */,
+				EC9954861B85536A00FC326C /* ExportModeCell.swift in Sources */,
 				EC4334321B7F7F540032FB33 /* PickImagesVC.swift in Sources */,
+				EC9954821B85482F00FC326C /* ExportModesCVC.swift in Sources */,
 				EC6413B51B81566C0084EDF3 /* NavigationController.swift in Sources */,
 				EC4334361B8118490032FB33 /* SaveBlendImageView.swift in Sources */,
 			);
