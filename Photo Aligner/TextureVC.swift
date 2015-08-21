@@ -1,24 +1,24 @@
 //
-//  CombinedVC.swift
+//  TextureVC.swift
 //  Photo Aligner
 //
-//  Created by Mollie on 8/15/15.
+//  Created by Mollie on 8/20/15.
 //  Copyright (c) 2015 Proximity Viz LLC. All rights reserved.
 //
 
 import UIKit
 import Photos
 
-class CombinedVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
+class TextureVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
     @IBOutlet weak var blendModeTextField: UITextField!
     @IBOutlet weak var alphaSlider: UISlider!
     @IBOutlet weak var combinedView: UIView!
     
     var blendView: UIView?
     
-    let pickerOptions = ["Normal", "Multiply", "Screen", "Overlay", "Darken", "Lighten", "Color Dodge", "Color Burn", "Soft Light", "Hard Light", "Difference", "Exclusion", "Hue", "Saturation", "Color", "Luminosity"]
-    let blendModeOptions = [kCGBlendModeNormal, kCGBlendModeMultiply, kCGBlendModeScreen, kCGBlendModeOverlay, kCGBlendModeDarken, kCGBlendModeLighten, kCGBlendModeColorDodge, kCGBlendModeColorBurn, kCGBlendModeSoftLight, kCGBlendModeHardLight, kCGBlendModeDifference, kCGBlendModeExclusion, kCGBlendModeHue, kCGBlendModeSaturation, kCGBlendModeColor, kCGBlendModeLuminosity]
+    let pickerOptions = ["Normal", "Multiply", "Screen", "Overlay", "Darken", "Lighten", "Soft Light", "Hard Light", "Difference", "Exclusion", "Saturation", "Luminosity"]
+    let blendModeOptions = [kCGBlendModeNormal, kCGBlendModeMultiply, kCGBlendModeScreen, kCGBlendModeOverlay, kCGBlendModeDarken, kCGBlendModeLighten, kCGBlendModeSoftLight, kCGBlendModeHardLight, kCGBlendModeDifference, kCGBlendModeExclusion, kCGBlendModeSaturation, kCGBlendModeLuminosity]
     
     var blendMode = kCGBlendModeNormal
     var blendAlpha: Float = 0.5
@@ -27,11 +27,9 @@ class CombinedVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
         blendView?.removeFromSuperview()
         blendView = BlendImageView(frame: combinedView.frame)
-        blendView = BlendImageView(frame: combinedView.frame, blendMode: blendMode, alpha: blendAlpha, exportMode: "double exposure")
+        blendView = BlendImageView(frame: combinedView.frame, blendMode: blendMode, alpha: blendAlpha, exportMode: "texture")
         blendView!.frame = CGRectMake(0, 0, combinedView.frame.width, combinedView.frame.height)
         combinedView.addSubview(blendView!)
-        // REFACTOR: Is this needed?
-        //        combinedView.setNeedsDisplay()
         
     }
     
@@ -39,19 +37,7 @@ class CombinedVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         println("save")
         
         if blendView != nil && firstPhoto != nil && secondPhoto != nil {
-//            // maybe make a hidden big image, save that one, and then dismiss the hidden image
-//            println(blendView!.frame.size) // pass this to SaveBlendImageView
-//            // calculate size of exported image in here and pass it in instead
-//                // imageView = (320, 325)
-//                // firstImage = (834, 1250)
-//                // secondImage = (1500, 1001)
-//                // saveBlendView should = ()
-//            let imageViewRatio = blendView!.frame.size.height / blendView!.frame.size.width
-//            let firstImageRatio = firstPhoto!.size.height / firstPhoto!.size.width
-//            let secondImageRatio = secondPhoto!.size.height / secondPhoto!.size.width
-//            if
             
-        
             // save image from saveBlendView
             UIGraphicsBeginImageContext(blendView!.frame.size)
             let context = UIGraphicsGetCurrentContext()
@@ -110,6 +96,19 @@ class CombinedVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         drawImages()
     }
     
+    // maybe move this function to BlendImageView.swift?
+    @IBAction func switchImages(sender: AnyObject) {
+        
+        if firstPhoto != nil {
+            let newCGFirstPhoto = CGImageCreateCopy(firstPhoto?.CGImage)
+            let newSecondPhoto = UIImage(CGImage: newCGFirstPhoto, scale: firstPhoto!.scale, orientation: firstPhoto!.imageOrientation)
+            firstPhoto = secondPhoto
+            secondPhoto = newSecondPhoto
+        }
+        // set needs display? or drawImages()
+        drawImages()
+    }
+    
     
     // MARK: Picker
     
@@ -149,5 +148,5 @@ class CombinedVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
     }
     
-
+    
 }

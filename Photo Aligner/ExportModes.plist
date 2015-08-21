@@ -14,16 +14,6 @@
 	</dict>
 	<dict>
 		<key>name</key>
-		<string>3D</string>
-		<key>storyboardID</key>
-		<string>threeDeeVC</string>
-		<key>class</key>
-		<string>ThreeDeeVC</string>
-		<key>imageName</key>
-		<string></string>
-	</dict>
-	<dict>
-		<key>name</key>
 		<string>Texture Overlay</string>
 		<key>storyboardID</key>
 		<string>textureVC</string>

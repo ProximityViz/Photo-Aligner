@@ -81,13 +81,16 @@ class ExportModesCVC: UICollectionViewController, UICollectionViewDelegateFlowLa
 //        let vc = storyboard.instantiateViewControllerWithIdentifier("venuesTVC") as VenuesTVC
 //        presentViewController(navC, animated: true, completion: nil)
         
-        let storyboard = UIStoryboard(name: "Redesign", bundle: nil)
+        let storyboard = UIStoryboard(name: "ExportModes", bundle: nil)
 //        let navC = storyboard.instantiateViewControllerWithIdentifier("venuesNavC") as UINavigationController
         
         // REFACTOR (hopefully)
         if className == "CombinedVC" {
             let vc = storyboard.instantiateViewControllerWithIdentifier(storyboardID) as! CombinedVC
 //            self.navigationController!.presentViewController(vc, animated: true, completion: nil)
+            navigationController?.pushViewController(vc, animated: true)
+        } else if className == "TextureVC" {
+            let vc = storyboard.instantiateViewControllerWithIdentifier(storyboardID) as! TextureVC
             navigationController?.pushViewController(vc, animated: true)
         }
         

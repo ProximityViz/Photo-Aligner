@@ -40,12 +40,6 @@ class PickImagesVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         
     }
     
-//    override func viewWillAppear(animated: Bool) {
-//        super.viewWillAppear(true)
-//        
-//        navigationController?.navigationBarHidden = true
-//    }
-    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }

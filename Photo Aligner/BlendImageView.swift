@@ -12,6 +12,7 @@ class BlendImageView: UIView {
     
     var blendMode = kCGBlendModeNormal
     var blendAlpha: Float = 0.5
+    var exportMode = "double exposure"
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,12 +20,13 @@ class BlendImageView: UIView {
         
     }
     
-    init(frame: CGRect, blendMode: CGBlendMode, alpha: Float) {
+    init(frame: CGRect, blendMode: CGBlendMode, alpha: Float, exportMode: String) {
         // not sure about this
         super.init(frame: frame)
         
         self.blendMode = blendMode
         blendAlpha = alpha
+        self.exportMode = exportMode
         
     }
     
@@ -33,8 +35,6 @@ class BlendImageView: UIView {
     }
     
     func getImageRect(imageSize: CGSize) -> CGRect {
-        
-        println(imageSize)
         
         // tests: 
         // (834.0, 1250.0), (320.0, 389.0) -> (190.0, 0.0, 260.0, 389.0)
@@ -69,10 +69,39 @@ class BlendImageView: UIView {
         }
         if firstPhoto != nil {
             let firstImageRect = getImageRect(firstPhoto!.size)
-            firstPhoto?.drawInRect(firstImageRect, blendMode: blendMode, alpha: CGFloat(blendAlpha))
+            if exportMode == "texture" {
+                let bAndW = makeBlackAndWhite(firstPhoto!)
+                bAndW.drawInRect(firstImageRect, blendMode: blendMode, alpha: CGFloat(blendAlpha))
+            } else {
+                firstPhoto?.drawInRect(firstImageRect, blendMode: blendMode, alpha: CGFloat(blendAlpha))
+            }
         }
         
         super.drawRect(rect)
+    }
+    
+    func makeBlackAndWhite(image: UIImage) -> UIImage {
+        
+        UIGraphicsBeginImageContextWithOptions(image.size, true, image.scale)
+        let imageRect = CGRectMake(0, 0, image.size.width, image.size.height)
+        image.drawInRect(imageRect, blendMode: kCGBlendModeLuminosity, alpha: 1.0)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+        
+        // something like this will be more efficient than what's being used above
+        // but it rotates the image wrong
+        
+        //        let imageRect = CGRectMake(0, 0, image.size.width, image.size.height)
+        //        let colorSpace = CGColorSpaceCreateDeviceGray()
+        //        let bitmapInfo = CGBitmapInfo(CGImageAlphaInfo.None.rawValue)
+        //        let context = CGBitmapContextCreate(nil, Int(image.size.width), Int(image.size.height), 8, 0, colorSpace, bitmapInfo)
+        //        CGContextDrawImage(context, imageRect, image.CGImage)
+        //        let imageRef = CGBitmapContextCreateImage(context)
+        //        let newImage = UIImage(CGImage: imageRef)
+        //        
+        //        return newImage!
     }
 
 }
